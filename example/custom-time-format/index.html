@@ -5,12 +5,12 @@
 
 <body>
   <script>
-    TimelinesChart()(document.body)
+    var tt = TimelinesChart()(document.body)
       .xTickFormat(n => +n)
       .timeFormat('%Q')
       .data(genRandomData());
 
-    //
+    //tt.data(genRandomData());
 
     function genRandomData() {
       const NLINES = 25,
@@ -19,7 +19,7 @@
         MAX_X = 100;
 
       return [{
-        group: '',
+        group: 'test',
         data: [...Array(NLINES).keys()].map(i => ({
           label: `line${i+1}`,
           data: getSegmentsData()
