@@ -1,0 +1,125 @@
+<head>
+
+  <!--<script src='//unpkg.com/timelines-chart'></script>-->
+  <script src='../../dist/timelines-chart.js'></script>
+
+</head>
+
+<body>
+  <script>
+
+    var data0 = [
+  {
+    "group": "Tasks",
+    "data": [
+      {
+        "label": "Task.label1",
+        "data": [
+          {
+            "timeRange": [
+              1,
+              2
+            ],
+            "val": "Read"
+          },
+          {
+            "timeRange": [
+              3,
+              4
+            ],
+            "val": "Process"
+          },
+          {
+            "timeRange": [
+              5,
+              6
+            ],
+            "val": "Write"
+          }
+        ]
+      },
+      {
+        "label": "Task.label2",
+        "data": [
+          {
+            "timeRange": [
+              7,
+              8
+            ],
+            "val": "Read"
+          },
+          {
+            "timeRange": [
+              9,
+              10
+            ],
+            "val": "Process"
+          },
+          {
+            "timeRange": [
+              11,
+              15
+            ],
+            "val": "Write"
+          }
+        ]
+      }
+    ]
+  }
+];
+
+    var data = genRandomDataContinuous();
+    console.log(data);
+    console.log(JSON.stringify(data));
+
+    /*
+    TimelinesChart()(document.body)
+      .xTickFormat(n => +n)
+      .timeFormat('%Q')
+      .data(data0);
+    */
+
+    TimelinesChart()(document.body)
+      .zScaleLabel('My Scale Units')
+      .xTickFormat(n => +n)
+      .timeFormat('%j')
+      .zQualitative(true)
+      .data(data0);
+
+    function genRandomDataContinuous() {
+      const NLINES = 5,
+        MAXSEGMENTS = 3,
+        MIN_X = 0,
+        MAX_X = 100;
+
+      return [{
+        group: 'SW',
+        data: [...Array(NLINES).keys()].map(i => ({
+          label: `SW.${i+1}`,
+          data: getSegmentsData()
+        }))
+      }];
+
+      //
+
+      function getSegmentsData() {
+        const nSegments = Math.ceil(Math.random()*MAXSEGMENTS),
+          segMaxLength = Math.round((MAX_X-MIN_X)/nSegments);
+        let runLength = MIN_X;
+
+        return [...Array(nSegments).keys()].map(i => {
+          const tDivide = [Math.random(), Math.random()].sort(),
+            start = runLength + tDivide[0]*segMaxLength,
+            end = runLength + tDivide[1]*segMaxLength;
+
+          runLength = runLength + segMaxLength;
+
+          return {
+            timeRange: [start, end],
+            val: 'Read'
+          };
+        });
+      }
+    }
+  </script>
+</body>
