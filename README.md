@@ -124,3 +124,16 @@ myChart
 [build-size-url]: https://bundlephobia.com/result?p=timelines-chart
 [dependencies-img]: https://img.shields.io/david/vasturiano/timelines-chart.svg
 [dependencies-url]: https://david-dm.org/vasturiano/timelines-chart
+
+
+
+
+## Commands
+  845  yarn cache clean
+  850  sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  851  source /home/p51ngh/.bashrc
+  852  nvm install --lts
+  860  npm cache clean --force
+  861  rm -rf ./node_modules
+  863  npm update
+  864  yarn
